@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -9,6 +9,7 @@ var Enemy = function() {
     // assigning Enemies Loactions
     this.x = x;
     this.y = y;
+    this.speed = Math.floor((Math.random()*200)+100);
 };
 
 // Update the enemy's position, required method for game
@@ -17,6 +18,13 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    
+    // canvas width = 505 & canvas height = 606;
+    if(this.x <= 505) {
+        this.x = this.x + this.speed * dt;
+    } else {
+        this.x = -2;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -35,20 +43,18 @@ var Player = function () {
 };
 
 
-// Now instantiate your objects.
+// Setting "x" where all each Enemy will be created
 var randomNumber = function() {
-    return Math.floor((Math.random() * 10) + 1);
+    return Math.floor((Math.random() * 10) - 10);
 }
 
 // Now instantiate your objects.
-var enemyOne = new Enemy(randomNumber(),randomNumber());
-var enemyTwo = new Enemy(randomNumber(),randomNumber());
-var enemyThree = new Enemy(randomNumber(),randomNumber());
-var enemyFour = new Enemy(randomNumber(),randomNumber());
-var enemyFive = new Enemy(randomNumber(),randomNumber());
+var enemyOne = new Enemy(randomNumber(),60);
+var enemyTwo = new Enemy(randomNumber(),140);
+var enemyThree = new Enemy(randomNumber(),220);
 
 // Place all enemy objects in an array called allEnemies
-var allEnemies = [enemyOne, enemyTwo, enemyThree, enemyFour, enemyFive];
+var allEnemies = [enemyOne, enemyTwo, enemyThree];
 
 // Place the player object in a variable called player
 var player = new Player();
