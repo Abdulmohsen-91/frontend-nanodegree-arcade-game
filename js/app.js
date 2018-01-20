@@ -50,7 +50,7 @@ var Player = function () {
 Player.prototype.update = function() {
     
     // to aviod the ambiguity of "this", we are assigning it to player before checking for collisions
-    var player = this;
+    var currentPlayerInstance = this;
     
     // Making sure Player can not move off screen
     if (this.y > 370) {
@@ -74,8 +74,8 @@ Player.prototype.update = function() {
     
     // checking for collisions, and if happens, set score to 0 and respawn the palyer
     for (var i = 0; i < allEnemies.length; i++) {
-        if(player.x >= allEnemies[i].x - 50 && player.x <= allEnemies[i].x + 50) {
-            if(player.y >= allEnemies[i].y - 50 && player.y <= allEnemies[i].y + 50) {
+        if(currentPlayerInstance.x >= allEnemies[i].x - 50 && currentPlayerInstance.x <= allEnemies[i].x + 50) {
+            if(currentPlayerInstance.y >= allEnemies[i].y - 50 && currentPlayerInstance.y <= allEnemies[i].y + 50) {
                 score = 0;
                 document.getElementById('Score').innerHTML = score;
                 player.respawn();
@@ -118,12 +118,15 @@ var randomNumber = function() {
 }
 
 // Now instantiate your objects.
-var enemyOne = new Enemy(randomNumber(),60);
-var enemyTwo = new Enemy(randomNumber(),140);
-var enemyThree = new Enemy(randomNumber(),220);
-
 // Place all enemy objects in an array called allEnemies
-var allEnemies = [enemyOne, enemyTwo, enemyThree];
+var allEnemies = [];
+// all we need is 3 enemies
+var NUM_ENEMIES = 3;
+// for loop to place enemy object in the array
+for (var i = 0; i < NUM_ENEMIES; i++) {
+    allEnemies.push(new Enemy(randomNumber(), 60 + 80 * i));
+    // the y axis here will be 60, 140 and 220
+}
 
 // Place the player object in a variable called player
 var player = new Player();
