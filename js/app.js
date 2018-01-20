@@ -37,6 +37,7 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
+// first thing we are creating score for the game and append it to our game page
 var score = 0;
 document.getElementById('Score').innerHTML = score;
 
@@ -48,8 +49,10 @@ var Player = function () {
 
 Player.prototype.update = function() {
     
-    var self = this;
+    // to aviod the ambiguity of "this", we are assigning it to player before checking for collisions
+    var player = this;
     
+    // Making sure Player can not move off screen
     if (this.y > 370) {
         this.y = 370;
     }
@@ -62,19 +65,20 @@ Player.prototype.update = function() {
         this.x = 0;
     }
 
-    // Check for player reaching top of canvas and winning the game
+    // if the player wins , increase score by 1
     if (this.y < 0) {
         score = score + 1;
         document.getElementById('Score').innerHTML = score;
         this.respawn();
     }
     
+    // checking for collisions, and if happens, set score to 0 and respawn the palyer
     for (var i = 0; i < allEnemies.length; i++) {
-        if(self.x >= allEnemies[i].x - 50 && self.x <= allEnemies[i].x + 50) {
-            if(self.y >= allEnemies[i].y - 50 && self.y <= allEnemies[i].y + 50) {
+        if(player.x >= allEnemies[i].x - 50 && player.x <= allEnemies[i].x + 50) {
+            if(player.y >= allEnemies[i].y - 50 && player.y <= allEnemies[i].y + 50) {
                 score = 0;
                 document.getElementById('Score').innerHTML = score;
-                self.respawn();
+                player.respawn();
             }
         }
     }
@@ -84,6 +88,7 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// handles the movement of the player
 Player.prototype.handleInput = function(key) {
     switch (key) {
         case 'left':
@@ -101,6 +106,7 @@ Player.prototype.handleInput = function(key) {
     }
 };
 
+// once the player win of die, his x & y will reset
 Player.prototype.respawn = function() {
     this.x = 200;
     this.y = 370;
