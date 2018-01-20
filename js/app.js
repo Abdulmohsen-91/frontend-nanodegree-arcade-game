@@ -73,12 +73,12 @@ Player.prototype.update = function() {
     }
     
     // checking for collisions, and if happens, set score to 0 and respawn the palyer
-    for (var i = 0; i < allEnemies.length; i++) {
+    for (var i = 0; i < NUM_ENEMIES; i++) {
         if(currentPlayerInstance.x >= allEnemies[i].x - 50 && currentPlayerInstance.x <= allEnemies[i].x + 50) {
             if(currentPlayerInstance.y >= allEnemies[i].y - 50 && currentPlayerInstance.y <= allEnemies[i].y + 50) {
                 score = 0;
                 document.getElementById('Score').innerHTML = score;
-                player.respawn();
+                this.respawn();
             }
         }
     }
