@@ -1,6 +1,12 @@
-frontend-nanodegree-arcade-game
-===============================
+# Udacity - Front-End Web Developer Nanodegree Program - Classic Arcade Game Clone
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+###Description:
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+This game is mu 6th project in Udacity - Front-End Web Developer Nanodegree Program, and it's about JS object-oriented programming features and HTML5 Canvas.
+
+###How to play
+Link to the game: [here](https://github.com/Abdulmohsen-91/frontend-nanodegree-arcade-game.git)
+In this game, all you need to play is the arrows kays.
+To win, aviod bugs and try to reach the water. keep doing this to earn more score.
+if you get hits, you will be respawned back to the beginning.
+
